@@ -1,6 +1,7 @@
 import "../globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
+import { zhTWLocalization } from "./localization";
 
 export const metadata = {
   title: "Threads",
@@ -15,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider localization={zhTWLocalization}>
       <html lang="zh-Hant">
         <body className={`${inter.className} bg-dark-1`}>{children}</body>
       </html>
