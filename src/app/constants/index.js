@@ -17,7 +17,7 @@ export const sidebarLinks = [
   {
     imgURL: "/assets/create.svg",
     route: "/create-thread",
-    label: "建立",
+    label: "建立貼文",
   },
   {
     imgURL: "/assets/community.svg",
