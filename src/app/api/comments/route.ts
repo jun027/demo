@@ -26,7 +26,8 @@ export async function POST(req: NextRequest) {
     await thread.save();
 
     return NextResponse.json({ message: "Comment added", comment: newComment });
-  } catch (error: any) {
-    return NextResponse.json({ message: error.message }, { status: 500 });
+  } catch (error) {
+    const err = error as Error;
+    return NextResponse.json({ message: err.message }, { status: 500 });
   }
 }

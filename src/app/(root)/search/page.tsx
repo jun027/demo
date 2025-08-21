@@ -1,10 +1,6 @@
 import UserCard from "@/app/components/cards/UserCard";
-import ProfileHeader from "@/app/components/shared/ProfileHeader";
-import ThreadsTab from "@/app/components/shared/ThreadsTab";
-import { profileTabs } from "@/app/constants";
 import { fetchUser, fetchUsers } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs/server";
-import Image from "next/image";
 import { redirect } from "next/navigation";
 
 async function Page() {
@@ -34,13 +30,13 @@ async function Page() {
         ) : (
           <>
             {result.users.map((person) => (
-              <UserCard 
-              key={person.id}
-              id={person.id}
-              name={person.name}
-              username={person.username}
-              imgUrl={person.image}
-              personType="User"
+              <UserCard
+                key={person.id}
+                id={person.id}
+                name={person.name}
+                username={person.username}
+                imgUrl={person.image}
+                personType="User"
               />
             ))}
           </>
