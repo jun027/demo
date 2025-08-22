@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import User from "../models/user.model";
 import { connectToDB } from "../mongoose";
-import Thread from "../models/thread.models";
+import Thread from "../models/thread.model";
 import { FilterQuery, SortOrder } from "mongoose";
 import { Children } from "react";
 
@@ -143,7 +143,7 @@ export async function getActivity(userId: string) {
     // collect all the child thread ids (replies) from the "children" field
     const childThreadIds = userThreads.reduce((acc, userThread) => {
       return acc.concat(userThread.children);
-    }, [])
+    }, []);
 
     const replies = await Thread.find({
       _id: { $in: childThreadIds },

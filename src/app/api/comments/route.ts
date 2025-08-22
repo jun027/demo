@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectToDB } from "@/lib/mongoose";
-import Thread from "@/lib/models/thread.models";
+import Thread from "@/lib/models/thread.model";
 
 export async function POST(req: NextRequest) {
   try {

@@ -12,7 +12,7 @@ export const connectToDB = async () => {
   }
   if (isConnected) return;
 
-  await import("./models/thread.models");
+  await import("./models/thread.model");
   await import("./models/user.model");
 
   await mongoose.connect(uri, { dbName: "hehe" });
