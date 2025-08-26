@@ -51,7 +51,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
   });
 
   const handleImage = (
-    e: ChangeEvent,
+    e: ChangeEvent<HTMLInputElement>,
     fieldChange: (value: string) => void
   ) => {
     e.preventDefault();
@@ -83,18 +83,18 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
     if (hasImageChanged) {
       const imgRes = await startUpload(files);
 
-      if (imgRes && imgRes[0].fileUrl) {
-        values.profile_phone = imgRes[0].fileUrl;
+      if (imgRes && imgRes[0].ufsUrl) {
+        values.profile_phone = imgRes[0].ufsUrl;
       }
     }
 
     await updateUser({
-      name: values.name,
-      path: pathname,
+      userId: user.id,
       username: values.username,
-      userid: user.id,
+      name: values.name,
       bio: values.bio,
       image: values.profile_phone,
+      path: pathname,
     });
 
     if (pathname === "profile/edit") {
@@ -155,7 +155,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
           render={({ field }) => (
             <FormItem className="flex flex-col w-full gap-3">
               <FormLabel className="text-base-semibold text-light-2">
-                Name
+                名字
               </FormLabel>
               <FormControl>
                 <Input
@@ -175,7 +175,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
           render={({ field }) => (
             <FormItem className="flex flex-col w-full gap-3">
               <FormLabel className="text-base-semibold text-light-2">
-                Username
+                使用者名稱
               </FormLabel>
               <FormControl>
                 <Input
@@ -195,7 +195,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
           render={({ field }) => (
             <FormItem className="flex flex-col w-full gap-3">
               <FormLabel className="text-base-semibold text-light-2">
-                Bio
+                個人簡介
               </FormLabel>
               <FormControl>
                 <Textarea
@@ -210,7 +210,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
         />
 
         <Button type="submit" className="bg-primary-500">
-          送出
+          {btnTitle || "送出"}
         </Button>
       </form>
     </Form>

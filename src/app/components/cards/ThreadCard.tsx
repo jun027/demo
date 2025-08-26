@@ -28,8 +28,8 @@ interface Props {
 
 const ThreadCard = ({
   id,
-  currentUserId,
-  parentId,
+  // currentUserId,
+  // parentId,
   content,
   author,
   community,
@@ -111,22 +111,17 @@ const ThreadCard = ({
             </div>
           </div>
         </div>
+      </div>
+      {!isComment && community && (
+        <Link
+          href={`/communities/${community.id}`}
+          className="mt-5 flex items-center"
+        >
+          <p className="text-subtle-medium text-gray-1">
+            {formatDateString(createdAt)} - {community.name} 發布
+          </p>
 
-        {/* TODO: DeleteThread */}
-        {/* TODO: Show comment logos */}
-
-        {console.log("COMMUNITY", community)}
-
-
-        {!isComment && community && (
-          <Link
-            href={`/communities/${community.id}`}
-            className="mt-5 flex items-center"
-          >
-            <p className="text-subtle-medium text-gray-1">
-              {formatDateString(createdAt)} - {community.name} Community
-            </p>
-
+          {community?.image ? (
             <Image
               src={community.image}
               alt={community.name}
@@ -134,9 +129,17 @@ const ThreadCard = ({
               height={14}
               className="ml-1 rounded-full object-cover"
             />
-          </Link>
-        )}
-      </div>
+          ) : (
+            <Image
+              src="/assets/admin.jpg"
+              alt="Community"
+              width={14}
+              height={14}
+              className="ml-1 rounded-full object-cover"
+            />
+          )}
+        </Link>
+      )}
     </article>
   );
 };

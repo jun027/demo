@@ -1,14 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-
   typescript: {
     ignoreBuildErrors: true,
   },
+  reactStrictMode: true,
 
   transpilePackages: ["mongoose"],
 
@@ -19,6 +14,10 @@ const nextConfig = {
       { protocol: "https", hostname: "uploadthing.com" },
       { protocol: "https", hostname: "placehold.co" },
     ],
+  },
+
+  typescript: {
+    ignoreBuildErrors: true,
   },
 };
 

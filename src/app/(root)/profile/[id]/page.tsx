@@ -7,12 +7,16 @@ import { currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
-async function Page({ params }: { params: { id: string } }) {
+type PageProps = { params: Promise<{ id: string }> };
+
+export default async function Page({ params }: PageProps) {
+  const { id } = await params;
+
   const user = await currentUser();
 
   if (!user) return null;
 
-  const userInfo = await fetchUser(params.id);
+  const userInfo = await fetchUser(id);
 
   if (!userInfo?.onboarded) redirect("/onboarding");
 
@@ -67,5 +71,3 @@ async function Page({ params }: { params: { id: string } }) {
     </section>
   );
 }
-
-export default Page;

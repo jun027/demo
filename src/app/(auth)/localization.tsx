@@ -56,4 +56,24 @@ export const zhTWLocalization = {
   formFieldInput__password: {
     placeholder: "請輸入密碼",
   },
+
+  organizationProfile: {
+    start: {
+      title: "組織",
+      subtitle: "管理您的組織",
+      actionText: "更新資料",
+    },
+    profilePage: {
+      title: "一般設定",
+      profilePicture: "組織頭像",
+      name: "組織名稱",
+      updated: "已更新組織",
+    },
+    membersPage: {
+      title: "成員",
+      inviteButton: "邀請成員",
+      leaveOrganization: "離開組織",
+      deleteOrganization: "刪除組織",
+    },
+  },
 };

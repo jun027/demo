@@ -7,6 +7,29 @@ import { redirect } from "next/navigation";
 
 type RouteParams = { id: string };
 
+type ThreadItem = {
+  _id: string;
+  parentId: string | null;
+  text: string;
+  author: {
+    name: string;
+    image: string;
+    id: string;
+  };
+  community: {
+    name: string;
+    image: string;
+    id: string;
+  } | null;
+  createdAt: string;
+  comments?: {
+    author: {
+      image: string;
+    };
+  }[];
+  children: ThreadItem[];
+};
+
 export default async function Page({
   params,
 }: {
@@ -49,7 +72,7 @@ export default async function Page({
       </div>
 
       <div className="mt-10">
-        {thread.children.map((childItem: any) => (
+        {(thread.children ?? []).map((childItem: ThreadItem) => (
           <ThreadCard
             key={childItem._id}
             id={childItem._id}
