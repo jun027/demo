@@ -3,7 +3,7 @@
 import { FilterQuery, SortOrder } from "mongoose";
 
 import Community from "../models/community.model";
-import Thread from "../models/thread.models";
+import Thread from "../models/thread.model";
 import User from "../models/user.model";
 
 import { connectToDB } from "../mongoose";
@@ -49,24 +49,29 @@ export async function createCommunity(
   }
 }
 
-export async function fetchCommunityDetails(id: string) {
+export async function fetchCommunityDetails(orgId: string) {
   try {
-    connectToDB();
+    await connectToDB();
 
-    const communityDetails = await Community.findOne({ id }).populate([
-      "createdBy",
-      {
-        path: "members",
-        model: User,
-        select: "name username image _id id",
-      },
-    ]);
+    const community = await Community.findOne({ id: orgId })
+      .populate([
+        {
+          path: "createdBy",
+          model: User,
+          select: "id _id name username image",
+        },
+        {
+          path: "members",
+          model: User,
+          select: "id _id name username image",
+        },
+      ])
+      
 
-    return communityDetails;
-  } catch (error) {
-    // Handle any errors
-    console.error("Error fetching community details:", error);
-    throw error;
+    return community;
+  } catch (err) {
+    console.error("Error fetching community details:", err);
+    throw err;
   }
 }
 

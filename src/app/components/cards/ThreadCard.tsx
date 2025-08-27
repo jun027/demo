@@ -1,3 +1,4 @@
+import { formatDateString } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -27,8 +28,8 @@ interface Props {
 
 const ThreadCard = ({
   id,
-  currentUserId,
-  parentId,
+  // currentUserId,
+  // parentId,
   content,
   author,
   community,
@@ -66,7 +67,7 @@ const ThreadCard = ({
 
             <p className="mt-2 text-small-regular text-light-2">{content}</p>
 
-            <div className={`${isComment && 'mb-10'} mt-5 flex flex-col gap-3`}>
+            <div className={`${isComment && "mb-10"} mt-5 flex flex-col gap-3`}>
               <div className="flex gap-3.5">
                 <Image
                   src="/assets/heart-gray.svg"
@@ -111,6 +112,34 @@ const ThreadCard = ({
           </div>
         </div>
       </div>
+      {!isComment && community && (
+        <Link
+          href={`/communities/${community.id}`}
+          className="mt-5 flex items-center"
+        >
+          <p className="text-subtle-medium text-gray-1">
+            {formatDateString(createdAt)} - {community.name} 發布
+          </p>
+
+          {community?.image ? (
+            <Image
+              src={community.image}
+              alt={community.name}
+              width={14}
+              height={14}
+              className="ml-1 rounded-full object-cover"
+            />
+          ) : (
+            <Image
+              src="/assets/admin.jpg"
+              alt="Community"
+              width={14}
+              height={14}
+              className="ml-1 rounded-full object-cover"
+            />
+          )}
+        </Link>
+      )}
     </article>
   );
 };

@@ -39,7 +39,7 @@ async function Page() {
             ))}
           </>
         ) : (
-          <p className="!text-base-regular text-light-3">No activity yet</p>
+          <p className="!text-base-regular text-light-3">沒有任何通知</p>
         )}
       </section>
     </section>

@@ -9,10 +9,9 @@ interface Props {
   name: string;
   username: string;
   imgUrl: string;
-  personType: string;
 }
 
-const UserCard = ({ id, name, username, imgUrl, personType }: Props) => {
+const UserCard = ({ id, name, username, imgUrl }: Props) => {
   const router = useRouter();
 
   return (
@@ -36,7 +35,7 @@ const UserCard = ({ id, name, username, imgUrl, personType }: Props) => {
         className="user-card_btn"
         onClick={() => router.push(`/profile/${id}`)}
       >
-        追蹤
+        查看
       </Button>
     </article>
   );
